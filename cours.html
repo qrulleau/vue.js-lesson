@@ -8,6 +8,8 @@
 </head>
 
 <body>
+
+
   <div id="app">
     <h1 v-once>{{ title }}</h1>
     <input type="text" v-on:input="changeTitle" />
@@ -16,18 +18,43 @@
     <p v-html="finishedLink"></p>
   </div>
 
-  <div id="exercice">
+  <div id="exerciceApp">
     <p v-once>VueJS is pretty cool - {{name}} ({{ age }}) ans</p>
     <p>new {{ newAge() }}</p>
     <p>{{ randomNumber() }}</p>
     <img :src="image">
   </div>
 
+
+
+
   <div id="events">
-    <button v-on:click="increase">Click me</button>
-    <p>{{ counter }}</p>
-    <p v-on:mousemove="updateCoordinate">Coordinates : {{ X }}/ {{ Y }}</p>
+    <button v-on:click="increase(2, $event) ">Click me</button>
+    <button v-on:click="counter++">Click me</button>
+    <p>{{ counter * 2 > 10 ? 'Greater Than 10' : 'Smaller than 10' }}</p>
+    <p v-on:mousemove="updateCoordinate">Coordinates : {{ X }}/ {{ Y }} -
+      <span v-on:mousemove="noneMouseOver">
+        END OF MOUSEOVER
+      </span>
+    </p>
+    <input type="text" v-on:keyup.y="alertMe">
   </div>
+
+  <div id="exerciceEvents">
+    <div>
+      <button v-on:click="showAlert">Show Alert</button>
+    </div>
+    <div>
+      <input v-on:keydown="valueFetch" type="text">
+      <p>{{ value }}</p>
+      <input v-on:keydown.enter="valueFetch" type="text">
+    </div>
+  </div>
+
+
+
+
+
 
   <script src="vue.js"></script>
   <script src="app.js"></script>

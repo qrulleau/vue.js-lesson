@@ -18,7 +18,7 @@ new Vue({
 });
 
 new Vue({
-  el: "#exercice",
+  el: "#exerciceApp",
   data: {
     name: "Quentin Rulleau",
     age: 15,
@@ -43,12 +43,33 @@ new Vue({
     Y: 0
   },
   methods: {
-    increase() {
-      this.counter++;
+    increase(step, event) {
+      this.counter += step;
     },
     updateCoordinate(event) {
       this.X = event.clientX;
       this.Y = event.clientY;
+    },
+    noneMouseOver(event) {
+      event.stopPropagation();
+    },
+    alertMe() {
+      alert("You are writing")
+    },
+  },
+});
+
+new Vue({
+  el: "#exerciceEvents",
+  data: {
+    value: "",
+  },
+  methods: {
+    showAlert() {
+      alert("you clicked")
+    },
+    valueFetch(event) {
+      this.value = event.target.value;
     }
   },
 });

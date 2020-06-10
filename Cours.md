@@ -40,7 +40,7 @@ methods : {
 
 directive est une instruction que tu places dans ton code.
 
-exemple : v-ind
+exemple : v-bind
 
 v-once : instruction qui permet de pas prendre en compte le changement pour l'element
 On met la fonction dans l'interpolation !!!
@@ -59,3 +59,29 @@ dans le cas ou il y a vraiment besoin de render du html on doit utiliser le v-ht
 ```
 
 v-on permet d'ecouter un evenemenet ( = addEventListener )
+
+pour stop un event sur un element
+
+```js
+stopEvent(event){
+    event.stopPropagation();
+}
+```
+ou simplement mettre comme argument stop ou prevent ( pour un form par exemple )
+
+```html
+<span v-on:mousemove.stop="endEvent">over event</span>
+```
+
+
+keyup est un event pour ecouter le clavier 
+il faut rajouter un key modifier pour ecouter la touche voulus .enter .y .a etc 
+```html
+<input type="text" v-on:keyup.y="alertMe">
+```
+
+annotation de condition et else directement dans le html ( javascript code in the teamplates)
+
+```html
+<p>{{ argument > condition ? `condition validé` : `condition non validé` }}</p>
+```
