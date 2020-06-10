@@ -53,6 +53,18 @@
 
 
 
+  <div id="dataBinding">
+    <input type="text" v-model="name">
+    <p>{{ name }}</p>
+
+    <button v-on:click="counter++">increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <button v-on:click="secondCounter++">Increase Second</button>
+    <p>Counter : {{ counter }} | {{ secondCounter }}</p>
+    <p>Result : {{ result() }} | {{ output }}</p>
+  </div>
+
+
 
 
 

@@ -73,3 +73,24 @@ new Vue({
     }
   },
 });
+
+new Vue({
+  el: "#dataBinding",
+  data: {
+    name: "Quentin",
+    counter: 0,
+    secondCounter: 0,
+  },
+  computed: {
+    output() {
+      console.log('computed');
+      return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+    }
+  },
+  methods: {
+    result() {
+      console.log('methods');
+      return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+    },
+  },
+});

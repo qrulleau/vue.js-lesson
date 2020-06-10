@@ -83,5 +83,19 @@ il faut rajouter un key modifier pour ecouter la touche voulus .enter .y .a etc
 annotation de condition et else directement dans le html ( javascript code in the teamplates)
 
 ```html
-<p>{{ argument > condition ? `condition validé` : `condition non validé` }}</p>
+<p>{{ argument > condition ? `condition validé` : `sinon condition non validé` }}</p>
 ```
+
+
+v-model permet de faire du data binding sans passé par une fonction se qui rend plus simple et permet d'adapter la valeur dynamiquement ( surtout pour des forms )
+il combine le v-bind et le v-on
+
+le teamplate new Vue comprend :
+
+el: "", = connecté la vue au DOM avec l'element choisis
+
+data: { value = "", }, = endroit pour stocker des valeurs
+
+methods: { function(){}, }, = endroit pour stocker des fonction qu'on apelle des methods
+
+computed: {} = permet une dependance des fonctionnalités notamment grace a la mise en cache ce celle ci (si j'ai bien compris a vérifier avec metek )
