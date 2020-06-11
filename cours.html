@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -53,6 +54,8 @@
 
 
 
+
+
   <div id="dataBinding">
     <input type="text" v-model="name">
     <p>{{ name }}</p>
@@ -64,9 +67,63 @@
     <p>Result : {{ result() }} | {{ output }}</p>
   </div>
 
+  <div id="dataBindingExercice">
+    <div>
+      <p>Current Value: {{ value }}</p>
+      <button @click="value += 5">add 5</button>
+      <button @click="value += 1">add 1</button>
+      <p>{{ result }}</p>
+
+      <div>
+        <input type="text">
+        <p>{{ value }}</p>
+      </div>
+    </div>
+  </div>
 
 
 
+  <div id="dynamicCSS">
+    <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+    <div class="demo" @click="attachBlue = !attachBlue" :class="{blue : attachBlue}"></div>
+    <div class="demo" @click="attachGreen = !attachGreen" :class="{green : attachGreen}"></div>
+
+    <div class="demo" :class="color"></div>
+    <input type="text" v-model="color">
+
+
+    <div class="demo" :style="{backgroundColor: color}"></div>
+    <div class="demo" :style="myStyles"></div>
+    <div class="demo" :style="[myStyles, {height: width + 'px'},]"></div>
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+  </div>
+
+
+
+
+  <div id="dynamixCssExercice">
+    <!-- faire switch deux classe au clic -->
+    <div>
+      <button @click="startEffect">Start Effect</button>
+      <div id="effect" :class="effectClasses"></div>
+    </div>
+
+    <!-- faire un tableau de style -->
+    <div :style="[amazingStyle, {color: 'red'}]">I got no class : </div>
+
+    <!-- crée un input pour rentrer une classe et l'attaché a la div-->
+    <input type="text" v-model="test">
+    <div :class="test"></div>
+
+    <!--laisser l'utilisateur entrer une classe et ecrire soit true / false et l'attacher -->
+    <input type="text" v-model="userClass">
+    <input type="text" v-model="isVisible">
+    <div :class=[{visible: isVisible}, userClass]></div>
+
+
+  </div>
 
   <script src="vue.js"></script>
   <script src="app.js"></script>

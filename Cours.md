@@ -90,7 +90,7 @@ annotation de condition et else directement dans le html ( javascript code in th
 v-model permet de faire du data binding sans passé par une fonction se qui rend plus simple et permet d'adapter la valeur dynamiquement ( surtout pour des forms )
 il combine le v-bind et le v-on
 
-le teamplate new Vue comprend :
+lorsque l'on instancie une Vue, elle comprend :
 
 el: "", = connecté la vue au DOM avec l'element choisis
 
@@ -98,4 +98,11 @@ data: { value = "", }, = endroit pour stocker des valeurs
 
 methods: { function(){}, }, = endroit pour stocker des fonction qu'on apelle des methods
 
-computed: {} = permet une dependance des fonctionnalités notamment grace a la mise en cache ce celle ci (si j'ai bien compris a vérifier avec metek )
+computed: {} = permet une dependance des fonctionnalités notamment grace a la mise en cache ce celle ci, les function appeler dedans ont aucun arguments comparé a methods 
+
+watch :{} = code qui s'execute a la fin de l'utilisation d'une fonction
+
+shortcut pour les v-:
+
+v-on: ---> @:
+v-bind ---> :

@@ -83,9 +83,19 @@ new Vue({
   },
   computed: {
     output() {
-      console.log('computed');
+      //console.log('computed');
       return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
     }
+  },
+  watch: {
+    counter(value) {
+      //console.log(value)
+      let vm = this;
+      //console.log(vm)
+      setTimeout(function () {
+        vm.counter = 0;
+      }, 2000)
+    },
   },
   methods: {
     result() {
@@ -93,4 +103,84 @@ new Vue({
       return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
     },
   },
+});
+
+new Vue({
+  el: '#dataBindingExercice',
+  data: {
+    value: 0
+  },
+  computed: {
+    result() {
+      return this.value == 37 ? 'done' : 'not there yet';
+    }
+  },
+  watch: {
+    result(e) {
+      let vm = this;
+      //console.log(this)
+      setTimeout(function () {
+        vm.value = 0;
+      }, 3000);
+    }
+  },
+});
+
+new Vue({
+  el: '#dynamicCSS',
+  data: {
+    attachRed: false,
+    attachBlue: false,
+    attachGreen: false,
+    color: 'green',
+    width: 100,
+
+  },
+  computed: {
+    divClasses() {
+      return {
+        red: this.attachRed,
+        blue: !this.attachRed
+      }
+    },
+    myStyles() {
+      return {
+        backgroundColor: this.color,
+        width: this.width + 'px'
+      }
+    }
+  },
+});
+
+new Vue({
+  el: '#dynamixCssExercice',
+  data: {
+    effectClasses: {
+      highlight: false,
+      shrink: true
+    },
+
+    fontSize: 20,
+    fontWeight: 'bold',
+    test: '',
+    userClass: '',
+    isVisible: true,
+  },
+  methods: {
+    startEffect() {
+      var vm = this;
+      setInterval(function () {
+        vm.effectClasses.highlight = !vm.effectClasses.highlight;
+        vm.effectClasses.shrink = !vm.effectClasses.highlight
+      }, 1000)
+    }
+  },
+  computed: {
+    amazingStyle() {
+      return {
+        fontSize: this.fontSize + 'px',
+        fontWeight: this.fontWeight,
+      }
+    }
+  }
 });
