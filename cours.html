@@ -103,7 +103,7 @@
 
 
 
-  <div id="dynamixCssExercice">
+  <div id="dynamicCssExercice">
     <!-- faire switch deux classe au clic -->
     <div>
       <button @click="startEffect">Start Effect</button>
@@ -120,7 +120,17 @@
     <!--laisser l'utilisateur entrer une classe et ecrire soit true / false et l'attacher -->
     <input type="text" v-model="userClass">
     <input type="text" v-model="isVisible">
-    <div :class=[{visible: isVisible}, userClass]></div>
+    <div :class="[{visible: isVisible}, userClass]"></div>
+
+    <!-- <div>
+      <input type="text" v-model="myStyles.backgroundColor">
+      <div :style="myStyles"></div>
+    </div> -->
+
+    <div>
+      <button v-on:click="startProgress">Start progress</button>
+      <div :class="['progress-bar']" :style="progressBar"></div>
+    </div>
 
 
   </div>

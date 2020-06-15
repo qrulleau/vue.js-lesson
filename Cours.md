@@ -106,3 +106,26 @@ shortcut pour les v-:
 
 v-on: ---> @:
 v-bind ---> :
+
+
+pour faire du conditionnal rendering :
+
+on utilise v-if , le point important sur le v-if , c'est qu'il ne cache pas , il ne passe pas en commentaire l'element , il le supprime.
+
+on peux notamment utilisé v-else qui va référé au dernier v-if utilisé
+
+template tag est une balise html 5 qui n'apparait pas dans le rendu html, il permet d'utilisé v-if etc
+
+la difference avec d'autre balise c'est qu'on peut wrap plusieurs elements
+
+```html
+<template v-if="show">
+    <h1>Heading</h1>
+    <p>Inside a teamplate</p>
+</template>
+```
+il y a aussi v-show qui va avoir le meme comportment que v-if mais le contenu sera en display none donc toujours present
+
+rendering List : 
+
+pour boucler sur vue, on utilise v-for

@@ -153,7 +153,7 @@ new Vue({
 });
 
 new Vue({
-  el: '#dynamixCssExercice',
+  el: '#dynamicCssExercice',
   data: {
     effectClasses: {
       highlight: false,
@@ -165,6 +165,11 @@ new Vue({
     test: '',
     userClass: '',
     isVisible: true,
+    progressBar : {
+      width : '0px',
+      backgroundColor : 'Red',
+
+    }
   },
   methods: {
     startEffect() {
@@ -173,6 +178,14 @@ new Vue({
         vm.effectClasses.highlight = !vm.effectClasses.highlight;
         vm.effectClasses.shrink = !vm.effectClasses.highlight
       }, 1000)
+    },
+    startProgress(){
+      let vm = this;
+      let width = 0;
+      setInterval(function(){
+        width = width +10;
+        vm.progressBar.width = width + 'px';
+      }, 500)
     }
   },
   computed: {
@@ -182,5 +195,23 @@ new Vue({
         fontWeight: this.fontWeight,
       }
     }
+  }
+});
+
+new Vue ({
+  el : '#conditionnal',
+  data: {
+    show: true
+  }
+});
+
+new Vue ({
+  el : '#renderingList',
+  data: {
+    ingredient : ['meat','fruit','cookies'],
+    persons : [
+      {name: 'max', age:24, color : 'red'},
+      {name: 'anna', age:'unknow', color : 'blue'}
+    ]
   }
 });

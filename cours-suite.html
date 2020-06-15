@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="conditionnal">
+    <p v-if="show">you can see me !</p>
+    <p v-else>do you also see me ?</p>
+    <button @click="show = !show">Switch</button>
+    <p v-show="show">test</p>
+    <template v-show="show">
+      <h1>Heading</h1>
+      <p>Inside a template</p>
+    </template>
+  </div>
+
+  <div id="renderingList">
+
+  </div>
+  
+  <script src="vue.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
