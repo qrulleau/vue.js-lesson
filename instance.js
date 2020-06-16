@@ -37,3 +37,16 @@ var manipulation1 = new Vue ({
     },
   }
 });
+
+Vue.component('hello', {
+  template : `<h1>hello!</h1>`
+});
+
+var vm3 = new Vue ({
+  template : '<h1>Hello World</h1>'
+});
+
+
+//maniere de connecter l'instance crée avec l'html
+vm3.$mount();
+document.getElementById('app3').appendChild(vm3.$el)

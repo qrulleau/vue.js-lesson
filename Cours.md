@@ -163,3 +163,5 @@ la methode teamplate permet de généré du contenu dans la vue
 ```js
 template : '<h1>Hello !</h1>
 ```
+
+VueJs est un framework tres rapide dans l'utilisation du DOM car il passe par un virtual DOM pour faire ces changements ce qui allege le DOM puisqu'il que le virtual DOM n'aura qu'a update le DOM
