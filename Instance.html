@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="instance">
+    <h1>{{ title }}</h1>
+    <button v-on:click="show">Show Paragraph</button>
+    
+    <p v-if="showParagraph">This is not always visible</p>
+  </div>
+  <div id="communicationBetweenInstance">
+    <button @click="onChange">Change title from another instance</button>
+  </div>
+  
+  <script src="vue.js"></script>
+  <script src="instance.js"></script>
+</body>
+
+
+</html>

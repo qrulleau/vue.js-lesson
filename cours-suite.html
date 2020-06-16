@@ -19,13 +19,54 @@
       <p>Inside a template</p>
     </template>
   </div>
-
-  <div id="renderingList">
-
-  </div>
   
-  <script src="vue.js"></script>
-  <script src="app.js"></script>
-</body>
-
-</html>
+  <div id="renderingList">
+    <ul>
+      <li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ ingredient }} ({{ i }})</li>
+    </ul>
+    <button @click="ingredients.push('spices')">Add New</button>
+    <!-- autre méthode : -->
+    <template v-for="(ingredient,index) in ingredient">
+      <p>{{ ingredient }}<p>
+        <p>{{ index }}<p>
+        </template>
+        
+        <!-- loop sur des objet : -->
+        <ul>
+          <li v-for="person in persons">
+            <div v-for="(value, index,) in person">{{ key }}: {{ value }}({{index}})</div>
+          </li>
+        </ul>
+        <!-- loop sur une liste de nombre  --> 
+        <ul>
+          <span v-for="n in 10">{{ n }}</span>
+        </ul>
+      </div>
+      
+      <div id="exerciceConditionnalRenderingList">
+        <div>
+          <button @click="show = !show">Show me the true</button>
+          <p v-if="show">you either see me</p>
+          <p v-else="show">... or me</p>
+          <p v-show="show">you either see me</p>
+          <p v-show="!show">... or me</p>
+        </div>
+        <ul>
+          <div v-for="(course, i) in panier">{{ course }} ({{ i }})</div>
+        </ul>
+        <ul>
+          <li v-for="spec in LOTR">
+            <div v-for="(value, index , key) in spec">{{ value }} : {{ key }} ({{ index }}) </div>
+          </li>
+        </ul>
+        <ul>
+          <li v-for="value in NewObject">{{ value }}</li>
+        </ul>
+      </div>
+      
+      <script src="vue.js"></script>
+      <script src="app-suite.js"></script>
+    </body>
+    
+    
+    </html>

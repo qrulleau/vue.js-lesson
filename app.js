@@ -198,20 +198,3 @@ new Vue({
   }
 });
 
-new Vue ({
-  el : '#conditionnal',
-  data: {
-    show: true
-  }
-});
-
-new Vue ({
-  el : '#renderingList',
-  data: {
-    ingredient : ['meat','fruit','cookies'],
-    persons : [
-      {name: 'max', age:24, color : 'red'},
-      {name: 'anna', age:'unknow', color : 'blue'}
-    ]
-  }
-});

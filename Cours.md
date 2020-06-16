@@ -129,3 +129,37 @@ il y a aussi v-show qui va avoir le meme comportment que v-if mais le contenu se
 rendering List : 
 
 pour boucler sur vue, on utilise v-for
+```html
+<ul>
+    <li v-for="(ingredient , i) in ingredients" >{{ ingredient }} ({{ i }})</li>
+</ul>
+le premier argument a mettre dans v for est le nom de la variable , puis on doit mettre le mot " in " puis la data sur lequel on veut boucle. Pour avoir l'index de chaque , on doit rentrer comme second argument i et le faire apparaitre dans le contenu
+
+syntax alternative pour v-for :
+```html
+<template v-for="(ingredient,index) in ingredient">
+    <p>{{ ingredient }}<p>
+    <p>{{ index }}<p>
+</template>
+```
+
+pour utilisé plusieurs instance de vue : changer la valeur de l'element " el : '#' "
+
+pour acceder a l'instance en etant en dehors , il faut stocker l'instance de la vue dans une valeur pour pouvoir la manipuler ( utilisation du vanilla pur )
+
+On ne peux pas rajouter des props en etant a l'exterieur de l'instance de la Vue.
+
+ref est un attribus html qui peut etre utilisé n'importe ou et qui permet de faire du DOM
+```js
+this.$refs.valeurDonné.innerHTML = "nouvelle value"
+```
+
+pour instancier la vue , il faut passer par l'element ' el ' mais on peut le faire aussi en passant par la méthode mount natif de vue ( vm1 variable ou l'on stock la vue )
+
+```js
+vm1.$mount('#app');
+```
+la methode teamplate permet de généré du contenu dans la vue
+```js
+template : '<h1>Hello !</h1>
+```
