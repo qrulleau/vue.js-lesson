@@ -175,6 +175,7 @@ ensuite il faut crée le projet Vue :
 
 vue init (template voulus) (nom du projet) / (ou commande plus actuel vue create (nom du projet))
 https://cli.vuejs.org/
+le template webpack-simple ne supporte pas le SASS ni le css local a évité !
 
 
 il est important de mettre dans la balise script  export default car il permet l'interpolation de donnée ce qui permet et de rendre dynamique l'interface
