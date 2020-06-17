@@ -49,4 +49,37 @@ var vm3 = new Vue ({
 
 //maniere de connecter l'instance crée avec l'html
 vm3.$mount();
-document.getElementById('app3').appendChild(vm3.$el)
+document.getElementById('app3').appendChild(vm3.$el);
+
+new Vue ({
+  el : '#lifeCicle',
+  data : {
+    title : 'The VueJS Instance',
+  },
+  beforeCreate (){
+    console.log('beforeCreate()')
+  },
+  Created (){
+    console.log('Created()')
+  },
+  beforeMount (){
+    console.log('beforeMount()')
+  },
+  beforeUpdate (){
+    console.log('beforeUpdate()')
+  },
+  updated (){
+    console.log('updated()')
+  },
+  beforeDestroy (){
+    console.log('beforeDestroy()')
+  },
+  destroyed (){
+    console.log('destroyed()')
+  },
+  methods : {
+    destroy(){
+      this.$destroy
+    },
+  },
+});

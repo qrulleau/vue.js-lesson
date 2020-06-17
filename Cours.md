@@ -164,4 +164,32 @@ la methode teamplate permet de généré du contenu dans la vue
 template : '<h1>Hello !</h1>
 ```
 
-VueJs est un framework tres rapide dans l'utilisation du DOM car il passe par un virtual DOM pour faire ces changements ce qui allege le DOM puisqu'il que le virtual DOM n'aura qu'a update le DOM
+VueJs est un framework tres rapide dans l'utilisation du DOM car il passe par un virtual DOM pour faire ces changements ce qui allege le DOM puisqu'il que le virtual DOM n'aura qu'a update les props qui sont dans la vue instance dans le DOM
+
+
+Pour installer un projet vue il faut : installer vue CLI il permet l'utilisation de template 
+
+npm install -g vue-cli (ou commande plus actuel npm install -g @vue/cli)
+
+ensuite il faut crée le projet Vue : 
+
+vue init (template voulus) (nom du projet) / (ou commande plus actuel vue create (nom du projet))
+https://cli.vuejs.org/
+
+
+il est important de mettre dans la balise script  export default car il permet l'interpolation de donnée ce qui permet et de rendre dynamique l'interface
+```js
+<script>
+export default {
+
+}
+</script>
+```
+
+pour lancer un projet dans le navigateur il faut faire la commande :
+
+npm run dev
+
+pour deployer le projet / mettre en production il faut faire la commande :
+
+npm run build
