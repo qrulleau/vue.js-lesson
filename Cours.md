@@ -186,6 +186,7 @@ export default {
 }
 </script>
 ```
+**commande pour le terminal**
 
 pour lancer un projet dans le navigateur il faut faire la commande :
 
@@ -194,3 +195,84 @@ npm run dev
 pour deployer le projet / mettre en production il faut faire la commande :
 
 npm run build
+
+**les composants : ** 
+
+le principe d'un composant est de séparé chaque partie d'une page en un composant indépendant qu'on l'on peut réutilisé a volonté. elle permet une indépendance des elements donc si le composant crash ca ne fais pas crash toute l'application
+
+pour en crée un component : 
+```js
+
+Vue.component('nomChoisisPourLeComponent');  
+
+// + instanciation de la Vue
+```
+```html 
+<nomChoisisPourLeComponent></nomChoisisPourLeComponent>
+```
+
+**pour stocker des datas dans un composant** 
+
+il faut transformer la props data en fonction :
+
+```js
+Vue.component('nomChoisisPourLeComponent', {
+    data(){
+        return {
+            status : 'crtical',
+        }
+    },
+    template : '<p>Server Status: {{ status}} </p>'
+});  
+```
+cependant si il y a deux composant qui ont utilisé sur la meme page , les changements de props vont se faire un par un pour que les deux composant soit synchrone il faut passé par un objet crée en dehors de la Vue
+
+```js
+let data = {
+    status : 'critical'
+};
+
+Vue.component('nomChoisisPourLeComponent', {
+    data(){
+        return data;
+    },
+    template : '<p>Server Status: {{ status}} </p>'
+});
+```
+
+**mettre un component en local / global**
+
+en local :
+
+pour mettre un component en local il faut stocker les methodes de l'instanciation de la vue dans une variable puis déclaré la props component dans l'instantiation de la vue
+```js
+
+var localComp = {
+    data(){
+        
+        }
+    },
+    template: '',
+    methods : {
+
+    },    
+};
+
+new Vue ({
+    el : ''
+    components : {
+        'my-component' : localComp
+    }
+})
+
+```
+
+en global :
+
+```js
+vue.component('my-component', {
+    // les props du component 
+    })
+```
+
+il faut penser a wrap tout ton element dans la balise template sinon il va detecter l'erreur comme quoi tu root sur plusieurs element.
