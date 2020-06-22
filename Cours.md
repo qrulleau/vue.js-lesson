@@ -275,4 +275,12 @@ vue.component('my-component', {
     })
 ```
 
+**pour crée un component**
+
+il faut crée un component avec vue.component dans le main.js avec comme argument le nom du fichier ou est crée le component
+
 il faut penser a wrap tout ton element dans la balise template sinon il va detecter l'erreur comme quoi tu root sur plusieurs element.
+
+**Styliser ces composants**
+
+pour introduire du style qui sera uniquement viable dans un composant il faut inserer la propriété **scoped** sinon le style sera viable pour tout le html.VueJs crée par cette propriété une id propre au composant data-v-... et crée des liens css dans la partie head

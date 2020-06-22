@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import home from './home.vue'
+import Home from './Home.vue'
 
-Vue.component('app-server-status', home);
+Vue.component('app-servers', Home);
 
 new Vue({
   el: '#app',
