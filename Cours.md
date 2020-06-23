@@ -1,3 +1,5 @@
+**introduction :** 
+
 Why vues js :
 
 extremly lean & small (16kb)
@@ -283,4 +285,74 @@ il faut penser a wrap tout ton element dans la balise template sinon il va detec
 
 **Styliser ces composants**
 
-pour introduire du style qui sera uniquement viable dans un composant il faut inserer la propriété **scoped** sinon le style sera viable pour tout le html.VueJs crée par cette propriété une id propre au composant data-v-... et crée des liens css dans la partie head
+pour introduire du style qui sera uniquement viable dans un composant il faut inserer la propriété **scoped** sinon le style sera viable pour tout le html.VueJs crée par cette attribus une id propre au composant data-v-... et crée des liens css dans la partie head et cela permet de voir si le css est bien affecté uniquement au composant choisis.
+
+**pour communiquer entre chaque composant**
+
+parent/enfant :
+
+il faut utiliser des props qui est une methodes qui permet de set une property qui sera settable en dehors du composant
+
+```vue
+<script>
+export default {
+    props: ['name']
+}
+</script>
+```
+puis mettre la props en attribus, sur le composant concerné et de le v-bind pour rentre dynamique la data qui sera dedans 
+
+```html
+<mon-composant :name="name"></mon-composant>
+<script>
+export default {
+    data(){
+        return {
+            name: "max"
+        },
+    },
+}
+</script>
+```
+
+!!! attention dans un template single file il est possible de mettre des noms de variables en uppercase "myName" mais dans les autres templates il est impossible a cause du DOM restriction
+
+**pour forcer le type d'un props**
+
+il faut déclaré props comme un objet et lui faire passé la valeur d'un props et le type de donné voulus ( possible de mettre plusieurs type grace a un tableau)
+
+```js
+props: {
+    name : String,
+    name : [String , Array],
+    name : {
+        type: string,
+        //required : true,
+        default: "max" 
+    },
+    name : {
+        type: object,
+        default : function(){
+            return {
+                name: "max"
+            }
+        }
+    }
+},
+```
+si le type est un object ou array alors il faudra passé une fonction dans default 
+
+**pour faire passer une props du child jusqu'au parent :**
+
+lors de la création d'une methods pour qu'elle soit valabla dans l'element parent il faut déclaré $emit dans l'elemet enfant :
+
+```js
+( "nomDeVariableRandom" , laDataEnQuestion )
+```
+puis dans l'element parent déclaré un v-on avec le nom de la data = $event
+```html
+<nom-du-component @nomDeVariableRandom="laDataEnQuestion = $event"></nom-du-component>
+
+
+
+des component child ne peuvent pas communiquaient entre eux , uniquenement entre le parent et le child
