@@ -5,3 +5,12 @@ new Vue({
   el: '#app',
   render: h => h(App)
 })
+
+export const eventsBus = new Vue ({
+  methods:{
+    changeAge(age){
+      this.$emit('ageWasEdited',age)
+    }
+  },
+
+}); 

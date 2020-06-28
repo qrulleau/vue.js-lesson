@@ -100,7 +100,7 @@ data: { value = "", }, = endroit pour stocker des valeurs
 
 methods: { function(){}, }, = endroit pour stocker des fonction qu'on apelle des methods
 
-computed: {} = permet une dependance des fonctionnalités notamment grace a la mise en cache ce celle ci, les function appeler dedans ont aucun arguments comparé a methods 
+computed: {} = permet une dependance des fonctionnalités notamment grace a la mise en cache ce celle ci, les function appeler dedans ont aucun arguments comparé a methods, essentiellement des fonctions pour formatter / afficher des datas.
 
 watch :{} = code qui s'execute a la fin de l'utilisation d'une fonction
 
@@ -352,7 +352,125 @@ lors de la création d'une methods pour qu'elle soit valabla dans l'element pare
 puis dans l'element parent déclaré un v-on avec le nom de la data = $event
 ```html
 <nom-du-component @nomDeVariableRandom="laDataEnQuestion = $event"></nom-du-component>
+```
+
+**pour passer des datas entre deux child :**
+
+1er methode : 
+
+il faut faire comme une route avec le parent component pour ce faire il faut utilisé la méthode pour passer des props du child jusqu'au parent
+
+2eme methode : 
+
+callback solution cad de definir une methods dans le parent component ensuite de le passer dans une fonction et executé la fonction dans le componsant voulus
+
+3eme methode : 
+
+utlisation d'une classe / objet global pour passer des datas cad que dans le fichier main.js on va exporter une constante qui va contenir l'instanciation d'une vue et par cette constance 
+
+```js
+export const eventsBus = new Vue();
+```
+
+puis on va importer l'importer dans nos composant
+
+```js
+import { eventsBus } from '../main';
+```
+puis il faut emet a partir de cette objet , c'est reproduire la methode 1 en passant par cette objet. Puis crée un ecouteur sur cette object
+```js
+methods:{
+    function(){
+        eventsBus.$emit("NomDeVariable", this.variable)
+    }
+},
+created(){
+    this.eventsbus.$on();
+}
+```
+https://pro.academind.com/courses/766397/lectures/13879565
+
+4eme methode ( plus simple ) :
+
+passer les props directement dans l'instanciation de vue crée dans main.js 
+
+```js
+export const eventsBus = new Vue({
+    methods : {
+
+    },
+    data : {
+
+    }
+});
+etc etc 
+``` 
+
+**pour faire apparaitre le contenu du component dans l'element parent :**
+
+pour ce faire vue a un tag dédié a cette manipulation "<slot></slot>", il faut le mettre dans l'element enfant , et dans la parent il faut mettre le contenu crée dans le composant !
+
+```html
+
+element parent : 
+
+<template>
+    <div>
+        <mon-composant>
+        <h2>Nouveau contenu</h2>
+        <p>super il va s'afficher</p>
+        </mon-composant>
+    </div>
+</template>
+
+element enfant :
+
+<template>
+    <div>
+        <slot></slot>
+    </div>
+</template>
+
+```
+
+pour styliser l'interieur d'un scope il faut comme stylisé un component mettre tout le css dans la balise style de l'enfant en n'oubliant pas l'attribus scoped.
+
+**differencier deux slot dans un meme composant :**
+
+pour utiliser deux slots il faut utiliser le names slots qui est le faite d'attribuer un attribus name au slot et attribuer l'attribus slot a l'interieur du composant parent avec la valeur donné dans l'attribus name dans l'element enfant
+
+```html 
+
+parent : 
+
+<template>
+    <mon-composant>
+        <div>
+            <h2 slot="premierSlot">j'adore les fruit</h2>
+            <h2 slot="secondSlot">m'en branle</h2>
+        </div>
+    </mon-composant>
+</template>
 
 
+enfants :
 
-des component child ne peuvent pas communiquaient entre eux , uniquenement entre le parent et le child
+<template>
+    <div>
+        <slot name="premierSlot"></slot>
+    </div>
+    <div>
+        <slot name="secondSlot"></slot>
+    </div>
+</template>
+
+```
+
+!!! si dans le cas au dessus l'element parent n'a pas l'attribus slot le contenu qui lui sera attribué correspondra dans l'element enfant qui n'a pas d'attribus name  
+
+**Les dynamiques composants :**
+
+pour crée des composants dynamique il faut utiliser la balise component et lui mettre comme attribus :is="" avec la méthode voulus, il faut au préalable définir plusieurs composant
+
+```html
+<my-component :is="fonctionChoisis"></my-component>
