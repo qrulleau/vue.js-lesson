@@ -470,7 +470,96 @@ enfants :
 
 **Les dynamiques composants :**
 
-pour crée des composants dynamique il faut utiliser la balise component et lui mettre comme attribus :is="" avec la méthode voulus, il faut au préalable définir plusieurs composant
+pour crée des composants dynamique il faut utiliser la balise component et lui mettre comme attribus :is="" avec la méthode voulus, il faut au préalable définir plusieurs composant dans la meme instanciations
 
 ```html
 <my-component :is="fonctionChoisis"></my-component>
+```
+
+!!! le probleme est le cycle de vie du component effectivement si on choisis de faire un tableau dynamique en fonction du clique , l'objet va se " détruire " pour converser son etat il faut utiliser la balise <keep-alive></keep-alive>
+
+```html
+<keep-alive>
+    <my-component :is="fonctionChoisis"></my-component>
+</keep-alive>
+```
+
+**native modifyier**
+
+il permet d'ecouter un evenement natif au composant
+https://fr.vuejs.org/v2/guide/components-custom-events.html#Relier-des-evenements-natifs-aux-composants
+
+```html
+<template>
+    <div>
+    <un-composant @click.native=""></un-composant>
+    </div>
+</template>
+```
+
+**Les forms :**
+
+**lazy modifyier**
+il permet de prendre la valeur de l'input lorsque l'utilisateur a écris au complet son MDP ( par exemple ) / lorsque l'utilisateur change de champs
+
+```html
+<template>
+   <input v-model.lazy="">
+</template>
+```
+
+**string / number modifyier**
+
+il permet de forcer le type de donné que l'on veux dans un champs
+
+```html
+<template>
+   <input v-model.number="">
+</template>
+```
+**mettre par default une valeur**
+
+1er methode:
+
+directement dans la balise ( dans l'exemple option )  avec l'attribus selected
+
+```html
+<select>
+    <option :selected="priority"></option>
+</select>
+```
+2eme methode:
+
+elle consite a definir l'element par default par l'element parent ( valable pour les balises select )
+
+```html
+<select v-model="fonctionRandom">
+    <option></option>
+</select>
+
+<script>
+export default {
+  data() {
+    return {
+      selectedPriority: "High"
+    };
+  }
+};
+</script>
+```
+
+**v-model fait maison**
+
+```html
+<input :value="dataRMD" @click="datRMD = $event.target.value">
+
+<script>
+export default {
+  data() {
+    return {
+      dataRMD: ""
+    };
+  }
+};
+</script>
+```
