@@ -551,7 +551,7 @@ export default {
 **v-model fait maison**
 
 ```html
-<input :value="dataRMD" @click="datRMD = $event.target.value">
+<input :value="dataRMD" @click="dataRMD = $event.target.value">
 
 <script>
 export default {
