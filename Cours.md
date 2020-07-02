@@ -684,3 +684,39 @@ Vue.mixin({
     }
 });
 ```
+
+
+**transition et animation**
+
+pour crée une transition sur vue , il faut wrap l'element voulus par la meta tag transition
+
+```html
+<transition>
+    <div></div>
+<transition>
+```
+
+attention on ne peux wrap qu'un seul element , on peux pas animer une liste non plus.
+
+lors de l'animation avec vue , la meta tag transition 4 classes pendant son changement d'etat : 
+
+-enter
+-enter-active
+-leave
+-leave-active
+
+et pour les utilisé du coup il faut définir un attribus name dans la méta tag transition et ensuite utilisé l'attribus comme prefix avec les état ex : 
+
+```html
+<template>
+<transition name="animation">
+    <div></div>
+<transition>
+</template>
+
+<style>
+.animation-enter {
+
+}
+</style>
+```
