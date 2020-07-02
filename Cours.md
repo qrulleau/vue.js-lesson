@@ -563,3 +563,124 @@ export default {
 };
 </script>
 ```
+
+**Les directives**
+
+on peux concevoir nos propres directives sur vue en effet un attribus qui commence par v- va signaler a vue que ce n'est pas un attribus normal.
+
+pour crée une directive il faut commencer par l'ecrire dans le main.js
+
+```js
+vue.directive("Nom", hook{
+    bind(el, binding, vnode){
+        el.style.backgroundColor = "green";
+        el.style.backgroundColor = binding.value;
+    }
+});
+```
+il y a 5 types de hooks :
+
+bind(el, binding, vnode) --> once directive is attached
+inserted(el, binding, vnode) --> inserted in Parent Node
+update(el, binding, vnode, oldVnode) --> Once component is updated ( without children )
+componentUpdated(el, binding, vnode,oldVnode) --> Once component is update ( with children )
+unbind(el, binding, vnode) --> once directive is remove
+
+ensuite il faut en prendre un ( les plus utilisé sont update et bind)
+
+!! l'utilisation du binding , lors de l'utlisation de la directive bien mettre entre simple quote la valeur v-maDirective="''"
+
+**utilisation des arguments**
+
+on peux mettre un argument a un attribus 
+```html
+<p v-maDirective:monArgument="'red'"></p>
+```
+**creer une local directive**
+
+pour crée une directive en local il suffit de mettre dans la partie script de la page vue la methode directives
+
+```html
+<script>
+export default {
+    directives : {
+
+    }
+}
+</script>
+```
+
+
+**filtre et mixins**
+
+un filtre est une syntax pour transformer des output dans un template
+
+pôur le crée en global :
+
+dans le fichier main.js 
+
+```js
+Vue.filter('nomRMD',)
+```
+
+puis intégré comme dans la version local c'est a dire mettre un | a côté de la data bindé
+
+en local : 
+
+crée une props filters 
+
+```html
+<template>
+<p>{{ text | functionExemple}}</p>
+<template>
+<script>
+export default {
+    mixins: [fruitMixin],
+    data(){
+        return {
+            text : "hello there"
+        }
+    },
+    filters : {
+        functionExemple(value){
+            return value.toUpperCase();
+        }
+    }
+}
+</script>
+```
+ensuite dans le teamplate 
+
+pour mettre plusieurs filter il faut juste les mettres a la suite
+```html
+<p>{{ text | FilterExemple | anotherFilterExemple}}</p>
+
+
+la méthode la plus conventionnel est de passé par une computed pour filter notamment des rechercher cf le dossier filter&MixinLesson
+
+**les mixins**
+
+lorsque deux composants utilisent des memes fonctionnalités on va créer un fichier js que l'on apelle un mixin pour pouvoir mieux séparé les fichiers et pouvoir eviter la répétition.
+
+https://fr.vuejs.org/v2/guide/mixins.html
+https://www.vuemastery.com/courses/next-level-vue/mixins
+
+lors de la création du fichier il faut penser à le stocker dans une constante pour pourvoir l'importer 
+
+```html
+<script>
+import { constanteStocker } from "./nomDuMixin.js"
+</script>
+```
+mixin a une particularité dans le file d'execution , il sera toujours en premier par rapport au local component.
+
+**global mixin**
+a ecrire dans le main.js
+
+```js
+Vue.mixin({
+    created(){
+        console.log('global mixin')
+    }
+});
+```
