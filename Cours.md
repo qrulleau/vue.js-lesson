@@ -720,3 +720,104 @@ et pour les utilisé du coup il faut définir un attribus name dans la méta tag
 }
 </style>
 ```
+
+!! vous pouvez mixer transition et animation mais dans le html il faudra penser a mettre un attribus type="" qui fera reference soit au css animation ou transition
+
+```html
+<transition name="slider" type="animation">
+          <div class="alert alert-info" v-if="show">This is some Info ptain</div>
+</transition>
+
+<style>
+    .slide-enter {
+}
+.slider-enter-active {
+  animation: slide-in 1s ease-out forwards;
+  transition: opacity 0.5s;
+}
+.slider-leave {
+}
+.slider-leave-active {
+  animation: slide-out 1s ease-out forwards;
+  transition: opacity 3s;
+  opacity: 0;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+</style>
+```
+
+**l'attribus appear**
+
+il permet de load l'animation au chargement de la page , il se met dans la balise transition.
+
+```html
+<transition appear>
+<transition>
+```
+**utiliser des librairies js**
+
+pour utiliser des libs js il faut utiliser les attribus : enter-active-class="" et leave-active-class=""
+
+```html
+<transition enter-active-class="" leave-active-class="">
+<transition>
+```
+
+**faire une transition sur deux elements**
+
+il faut mettre un attribus key qui contient une unique valeur ( comme id ) sur chaque element a l'interieur 
+
+```html
+<transition>
+    <div key="premiereKey"></div>
+    <div key="deuxiemeKey"></div>
+</transition>
+```
+
+!!! cependant il y a un soucis dans l'animation puisque les elements se situent cote à cote. Pour résoudre ce soucis il faut mettre un attribus mode="" dans la meta tag transition et soit mettre "out-in" ou "in-out"
+https://fr.vuejs.org/v2/guide/transitions.html
+
+
+**transition JS hooks **
+
+il y a 8 hooks :
+
+before-enter after-enter enter after-enter-cancelled
+before-leave after-leave leave after-leave-cancelled
+
+pour les utilisés en JS il faut les passé en event puis déclaré en methode 
+
+```html
+<div @enter="nomRMD"></div>
+<script>
+    export default {
+        methods : {
+            nomRMD(el){
+                console.log("bonjour")
+            }
+        }
+    }
+</script>    
+```
+!!! les hooks enter et leave ont comme second argument done et il faut penser a les éxécutés comme fonction
+
+
+**transition sur un groupe**
+
+il a était crée la meta tag <transition-groupe></transition-groupe> qui permet d'animer un ensemble element
