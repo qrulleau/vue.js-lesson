@@ -821,3 +821,64 @@ pour les utilisés en JS il faut les passé en event puis déclaré en methode
 **transition sur un groupe**
 
 il a était crée la meta tag <transition-groupe></transition-groupe> qui permet d'animer un ensemble element
+
+a l'inverse de la meta tag transition, transition groupe crée un tag dans le DOM qui est par default un span et on peux choisir en mettant l'attribus tag=""
+
+
+**Faire des requetes https :**
+
+pour utiliser des API avec vu on utilise Axios
+https://github.com/axios/axios
+
+pour l'installer il faut run cette commande
+
+npm install --save axios
+
+**faire une POST Request**
+
+il faut import axio puis l'utilis avec la fonction post qui prend deux argument , une url puis les donnés que tu veux envoyés
+
+```html
+<script>
+import axios from 'axios'
+
+export default {
+    methods : {
+        axios.post(`l'url de la ou jvais envoyé mon objet`, objetData),
+        submit(){
+            const objetData = {
+                email: this.email,
+                etc etc etc
+            }
+        }
+    }
+}
+</script>
+```
+
+**faire une GET Request**
+
+de la meme maniere que la méthode POST sauf que l'on fait un get et on met juste l'url comme argument
+
+```html
+<script>
+import axios from 'axios'
+
+export default {
+    methods : {
+        axios.get(`l'url de la ou jvais envoyé mon objet`),
+    }
+}
+</script>
+```
+
+
+***parametré de maniere global des request**
+
+il est recommandé pour des questions de maintenabilité de set l'api en global (dans le fichier main.js).
+il est possible de definir aussi par exemple des parametre dans le header de la requete en fesant 
+
+```js
+axios.defaults.baseURL = `url de l'api`
+axios.defaults.headers.common['parametre'] = `ce que tu veux`
+```

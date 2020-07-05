@@ -51,6 +51,19 @@
         <transition name="fade" mode="out-in">
           <component :is="selectComponent"></component>
         </transition>
+        <hr />
+        <button class="btn btn-primary" @click="addItem">Add item</button>
+        <ul class="list-group">
+          <transition-group name="fade" tag="div">
+            <li
+              class="list-group-item"
+              v-for="(number ,index) in numbers"
+              @click="removeItem(index)"
+              style="cursor:pointer"
+              :key="number"
+            >{{ number }}</li>
+          </transition-group>
+        </ul>
       </div>
     </div>
   </div>
@@ -68,7 +81,8 @@ export default {
       load: true,
       alertAnimation: "fade",
       elementWidth: 100,
-      selectComponent: "app-success-alert"
+      selectComponent: "app-success-alert",
+      numbers: [1, 2, 3, 4, 5]
     };
   },
   components: {
@@ -122,6 +136,13 @@ export default {
     },
     leaveCancelled(el) {
       console.log("leaveCancelled");
+    },
+    addItem() {
+      const pos = Math.floor(Math.random() * this.numbers.length);
+      this.numbers.splice(pos, 0, this.numbers.length + 1);
+    },
+    removeItem(index) {
+      this.numbers.splice(index, 1);
     }
   }
 };
@@ -134,20 +155,21 @@ export default {
 .fade-enter-active {
   transition: opacity 1s;
 }
-.fade-leave {
-}
+
 .fade-leave-active {
   transition: opacity 1s;
   opacity: 0;
+  position: absolute;
 }
-.slide-enter {
+.fade-move {
+  transition: transform 1s;
 }
+
 .slider-enter-active {
   animation: slide-in 1s ease-out forwards;
   transition: opacity 0.5s;
 }
-.slider-leave {
-}
+
 .slider-leave-active {
   animation: slide-out 1s ease-out forwards;
   transition: opacity 1s;
