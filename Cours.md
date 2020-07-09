@@ -882,3 +882,92 @@ il est possible de definir aussi par exemple des parametre dans le header de la 
 axios.defaults.baseURL = `url de l'api`
 axios.defaults.headers.common['parametre'] = `ce que tu veux`
 ```
+
+**Vue Router**
+
+pour installer vue Router :
+
+npm install --save vue-router
+
+pour rendre utilisable vueRouter dans toute l'application il faut le déclaré dans le main.js
+
+```js
+Vue.use(VueRouter);
+```
+
+il faut crée la route dans un fichier js ( routes.js ) et il faut importer les composants sur lesquel on va root et crée une constante qui va etre un objet ou on va definir le path avec le component. 
+
+```js
+import MonComponent from `l'url` 
+
+export const routes = {
+    {path:' ', component : MonComponent},
+
+}
+```
+
+!!! lorsque le path n'est pas renseigné vue js met # dans l'url ce qui rend l'url degeulasse pour fix ce soucis il faut renseigner dans la constante router le mode : 'history'
+
+Ensuite il faut importer la variable crée dans le fichier route.js puis crée une constante et déclaré une une nouvelle route dans le main.js
+
+```js
+import {{ routes }} from './'
+
+const router = new VueRouter({
+    routes,
+    mode : 'history'
+})
+```
+et ensuite il faut intégré la meta tag <router-view></router-view>
+
+** pour faire des liens dans le code **
+
+il fa   utilisé un v-on sur un click avec une methods qui aura pour fonction this*$router.push('/')
+
+```html
+<template>
+    <div>
+        <button @click="FunctionNavigate"></button>
+    </div>
+</template>
+
+<script>
+    export default {
+        methods: {
+            FunctionNavigate(){
+                this.$ROUTER.PUSH(` le chemin que tu veux ex : '/' `)
+            }
+        }
+    }
+</script>
+```
+
+beaucoup trop de chose a détaillé , route par le nom , route imbriqué , route dynamique , mieux vaut regardé le routes.js
+
+https://router.vuejs.org/fr/
+
+**faire une redirection**
+
+pour faire une redirection faut définir de maniere global dans le routes.js dans la route un path et une redirect 
+
+```js
+
+{path: '/redirect-me' , redirect : '/user' }
+
+```
+
+**faire une redirection a partir d'un name :**
+
+```js
+
+{path: '/redirect-me' , redirect : {name:'userEdit' }
+
+```
+
+**faire une redirection global :**
+
+```js
+
+{path: '*' , redirect : '/' }
+
+```
