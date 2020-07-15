@@ -858,7 +858,7 @@ export default {
 
 **faire une GET Request**
 
-de la meme maniere que la méthode POST sauf que l'on fait un get et on met juste l'url comme argument
+de la meme manière que la méthode POST sauf que l'on fait un get et on met juste l'url comme argument
 
 ```html
 <script>
